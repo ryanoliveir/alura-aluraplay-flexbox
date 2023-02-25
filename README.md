@@ -181,3 +181,14 @@ Vídeos da sessão vídeos:
         </div>
     </li>
 ```
+
+
+Notes:
+
+
+# Tags
+
+```html
+<aside></aside>
+```
+O elemento HTML <aside> representa uma seção de uma página que consiste de conteúdo que é tangencialmente relacionado ao conteúdo do seu entorno, que poderia ser considerado separado do conteúdo. Essas seções são, muitas vezes, representadas como barras laterais. Elas muitas vezes contem explicações laterais, como a definição de um glossário; conteúdo vagamente relacionado, como avisos; a biografia do autor; ou, em aplicações web, informações de perfil ou links de blogs relacionados.
