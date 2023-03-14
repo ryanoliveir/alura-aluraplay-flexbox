@@ -7,8 +7,27 @@
 
 }
 
-.cabecalho__pesquisar_item{
+.cabecalho__pesquisar_item{ 
     display: none;
+}
+
+
+
+.rodape__container {
+    display: flex;
+    /* flex-direction: column;
+    flex-wrap: wrap; */
+    flex-flow: column wrap;
+}
+
+
+.superior__secao__container {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: scroll;
+    gap: 10px;
+    
 }
 
 
@@ -17,6 +36,10 @@
     .cabecalho__pesquisar_item{
         display: block;
     }
+
+     .rodape__container {
+        justify-content: space-between;
+    } 
 }
 
 
