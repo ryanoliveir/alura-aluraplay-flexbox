@@ -97,7 +97,7 @@ body{
 
 
 
-.menu_container {
+.menu__container {
     background-color: var(--azul-escuro);
     font-size: 14px;
 }
@@ -149,47 +149,47 @@ body{
 }
 
 
-.icone__alura {
+.icone__alura::before {
     content: url(../img/menu/Avatar_Alura.png);
 }
 
-.icone__gaveta {
+.icone__gaveta::before {
     content: url(../img/menu/Avatar_Gaveta.png);
 }
 
-.icone__ballerini {
+.icone__ballerini::before {
     content: url(../img/menu/Avatar_Rafa.png);
 }
 
-.icone__iamarino {
+.icone__iamarino::before {
     content: url(../img/menu/Avatar_Atila.png);
 }
 
-.icone__souto {
+.icone__souto::before {
     content: url(../img/menu/Avatar_Souto.png);
 }
 
-.icone__nerd {
+.icone__nerd::before {
     content: url(../img/menu/Avatar_Jovem_Nerd.png);
 }
 
-.icone__deschamps {
+.icone__deschamps::before {
     content: url(../img/menu/Avatar_Deschamps.png);
 }
 
-.icone__mostrar {
+.icone__mostrar::before {
     content: url(../img/menu/keyboard_arrow_down.png);
 }
 
-.icone__jogos {
+.icone__jogos::before {
     content: url(../img/menu/jogos.png);
 }
 
-.icone__filmes {
+.icone__filmes::before {
     content: url(../img/menu/filmes.png);
 }
 
-.icone__videos {
+.icone__videos::before {
     content: url(../img/menu/videos.png);
 }
 

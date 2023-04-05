@@ -175,6 +175,265 @@ Confira abaixo, exemplo de código no editor de código online Codepen, apenas a
  DISCUTIR NO FORUM
 
 
+## __#03 Menu mobile-first o Poder do FlexBox__
+
+
+![mobile-first](./readme-images/mobile-first.png)
+
+
+### Para celular...
+
+Neste momento, podemos pensar em arrumar a nossa responsividade para dispositivos móveis, em primeiro plano. Afim de garantir que o conteúdo esteja adptável mobile antes do desktop.
+
+
+No projeto, queremos que a barra lateral, na tag `<aside>`, fique na parte debaixo da página de maneira fixa. Primeiro devemos pensar em arrumar o container desses elemento, pela sua classe (`.menu__lista`)
+
+__1) Informamos que o container tera uma posição fixa.__
+
+__2) Informamos essa posição.__
+
+__3) Dimiuimos a altura do mesmo.__
+
+__4) Declaramos que a sua largura ocupara todo o espaço dispível do container na tela.__
+
+```css
+.menu__container{
+    position: fixed; /*{1}*/
+    bottom: 0%; /*{2}*/
+    height: 74px; /*{3}*/
+    width: 100%;/*{4}*/
+}
+
+```
+
+Agora devemos organizar os elementos com o flexbox. O menu possuí 4 blocos de lista 
+
+![menu-list](./readme-images/menu-lista.png)
+
+Entretando queremos apenas o primeiro bloco, que contém os 5 elementos. 
+para isso podemos usar o `nth-child` que é uma função que seleciona o elemento na posição x, no caso quando temos elementos com classes ou tags iguais, e queremos que alguns tenha caracteristicas específicas
+
+Como é o nosso exemplo:
+
+```css
+.menu__lista:nth-child(2), /* Seleciona o segundo bloco .menu_container*/
+.menu__lista:nth-child(3), /* Seleciona o terceiro bloco .menu_container*/
+.menu__lista:nth-child(4){ /* Seleciona o quarto bloco .menu_container*/
+    display: none; /* Aplica display none para todos, menos o 1, que não foi selecionado */
+}
+```
+Agora devemos agrupa-los em no centro e aplicar espaçamento entre eles, usando o flexbox, mas podemos usar em vez de usar uma __propriedade para o elemento pai__ pode usar __propriedades para o elementos-filhos__
+que é o caso do `align-self: center` onde o elemento ira se colocar (se alinhar) no centro do container.
+
+```css
+.menu__itens li { /*Aplicando para cada li dentro de .menu__itens*/
+    align-self: center; /* Cada elemento ira se colcoar no centro do container*/
+}
+}
+```
+
+Após isso:
+
+1 - Aplicamos o espaçamento entre os itens
+2 - Mudados a direção do flexbox, de linha (row) para coluna (column)
+3 - Adicionamos espaços de 5x apenas entre os elementos com o gap;
+
+```css
+.menu__itens {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+```
+
+### Para tablet...
+
+```css
+
+@media (min-width: 834px){
+ 
+    .cabecalho__pesquisar_item{
+        display: block;
+    }
+
+     .rodape__container {
+        justify-content: space-between;
+    } 
+
+
+    .menu__container {
+        left: 0;
+        height: auto;
+        top: 80px;
+        width: 74px;
+    }
+
+    .menu__lista {
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 15px;
+        gap: 33px;
+    }
+}
+
+```
+
+## __Usando @media para desktop
+
+
+Nesse momento e necessário organizar os elementos da barra latereal para uma lagura miníma de 1444px.
+
+```css
+
+@media (min-width: 1444px){
+    
+    .menu__container {
+        width: 239px; /* Largura da barra laterial */
+        overflow-y: scroll; /* Aplicar barra de colagem para acessar os elementos que ficaram mais embaixo*/
+    }
+
+    .menu__lista:nth-child(2),
+    .menu__lista:nth-child(3),
+    .menu__lista:nth-child(4){
+        display: flex; /* Para desktop, as outras listas podem ser mostradas */
+    }
+
+    .menu__lista {
+        height: auto; /* Essa propriedade ajusta automaticamente a altura do elemento para permitir que seu conteúdo seja mostrado corretamente*/
+        padding: 20px 17px 20px 15px; /* Aplicasse um padding para cada bloco de lista*/
+        gap: 15px /* Aplica um espaçamento de 15px entre os elementos dentro do elemento pai  .menu_lista */
+    
+    }
+
+    .menu__itens {
+        flex-direction: row; /* Muda o elementos para ficarem um ao lado do outro (em linha) e não encima do outro (coluna)*/
+        align-items: center;
+        gap: 15px; /* Aplica um espaçamento de 15px entre os elementos dentro do elemento pai  .menu_itens */
+    }
+
+
+    .menu__lista:nth-child(3) {
+        flex-direction: column-reverse; /* Inverte a apresentação dos elementos*/
+    }
+
+
+    /* A propriedade order informa a ordem que o elemento será apresentado no css*/
+    .jogos {
+        order: 3;  /* Terceiro elemento na ordem*/
+    }
+
+    .filmes {
+        order: 2;  /* Segundo elemento na ordem*/
+    }
+
+    .premium {
+        order: 1;  /* Primeiro elemento na ordem*/
+    }
+
+
+    .maispagina {
+        order: 4; /* Quarto elemento na ordem*/
+    }
+
+
+}
+
+
+```
+
+## __Flex-item & Flex-container__
+
+
+O Flexbox permite manipular de forma prática a distribuição de elementos em uma página. A primeira coisa a ser feita para utilizar esta ferramenta é alterar o valor do display de um elemento para display: flex. Dessa forma, tornamos este elemento, um flex-container, e seus elementos filhos passam a ser flex-item.
+
+E então, você pode manipular os elementos de duas formas:
+
+Utilizando propriedades flex-container, que são sempre aplicadas no elemento pai. Possibilitando manipular todos os elementos no seu interior.
+
+E, também, utilizando propriedades flex-item, estas são sempre aplicadas em cada elemento que deseja manipular.
+
+[Documentation about Flex Container][4]
+
+[Documentation about Flex Item][5]
+
+
+
+
+
+## __#05 Flex grow__
+
+Você pode utilizar o flexbox para organizar as descrições, mas também existe uma outra solução de layout muito interessante, chamada display: grid. O grid é muito eficiente também nesse caso, quando precisamos organizar muitos itens em níveis diferentes dentro de um container.
+[CSS Grid Layout][6]
+
+
+> The flex-grow property specifies how much the item will grow relative to the rest of the flexible items inside the same container. 
+
+
+```css
+
+/*videos*/
+
+.videos__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+
+    
+}
+
+.videos__item {
+    height: 303px;
+    width: 280px;
+    flex-grow: 1;
+}
+
+
+.descricao-video {
+    display: grid;
+    text-align: start;
+    column-gap: 1rem;
+    row-gap: 10px;
+    grid-template-columns: auto 1fr;
+}
+
+.descricao-video img {
+    grid-area: 1 / 1 / 3 / 2;
+}
+
+
+```
+__`flex-shrink`__
+
+A propriedade 'flex-shrink' é ideal para ser aplicada quando queremos encolher elementos à medida que o seu container diminui de largura.
+> The flex-shrink property specifies how the item will shrink relative to the rest of the flexible items inside the same container.
+
+```css
+/* Exemplo */
+
+.item-1 {
+    background-color: #d34f26; 
+    flex-shrink: 5;
+}
+
+.item-2 {
+    background-color: #68b6e2;
+    flex-shrink: 1;
+}
+
+.item-3 {
+    background-color: red;
+    flex-shrink: 1;
+}
+
+.item-4 {
+    background-color: rgb(0, 217, 255);
+    flex-shrink: 1;
+}
+
+```
+
+
 # Tags
 
 ```html
@@ -187,3 +446,6 @@ O elemento HTML <aside> representa uma seção de uma página que consiste de co
 [1]:https://css-tricks.com/snippets/css/a-guide-to-flexbox/ "Guia completo sobre flexbox"
 [2]:https://www.alura.com.br/artigos/o-que-e-reset-css "Reset CSS"
 [3]:https://origamid.com/projetos/flexbox-guia-completo/ "Flexbox Guia Completo"
+[4]:https://www.w3schools.com/css/css3_flexbox_container.asp "Flexbox Container"
+[5]:https://www.w3schools.com/css/css3_flexbox_items.asp "Flexbox Items"
+[6]:https://www.alura.com.br/artigos/criando-layouts-com-css-grid-layout "CSS Grid Layout"
